@@ -1,0 +1,168 @@
+
+
+body
+{
+    overflow-x: hidden;
+    
+}
+
+
+.pace-running .entire-content
+{
+    opacity: 0;
+}
+
+
+
+.pace-done .entire-content
+{
+    opacity: 1;
+    transition: all 1s ease-in;
+}
+
+
+
+
+
+
+
+/*====================
+Basic properties
+======================*/
+
+ *
+{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar
+{
+    padding:10px 0px;
+   /* background-color:rgba(135, 206, 135, 0.767) !important; */
+    border-bottom: none !important;
+    transition: all 0.5s ease-in-out;
+}
+
+.navbar  ul  li a
+{
+    color: black !important;
+    text-transform: uppercase;
+    letter-spacing:1px;
+    font-weight:bold;
+    font-size:14px;
+    transition: all 0.5s ease-in
+}
+
+.navbar ul li a:hover, .navbar ul li a:focus
+{
+    color: deepskyblue !important;
+    background: none !important;
+}
+
+
+.navbar-inverse .navbar-collapse
+{
+    border-color:transparent !important
+}
+.about
+{
+    border: 1px solid pink;
+    border-radius:58px;
+}
+.navbar-inverse{
+    background-color: transparent !important;
+}
+
+
+
+
+
+
+
+
+/*====================
+Slider--HOME
+======================*/
+.slider{
+    width: 100%;
+    height :700px;
+  
+    color:black;
+}
+
+
+.slider-content{
+    position: absolute;
+    top: 39%;
+    width: 100%;
+
+}
+
+
+
+
+/*=======================================
+            Animals
+=========================================*/ 
+
+
+.testimonials
+{
+    background-image: url();
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding-top: 80px;
+    padding-bottom: 150px;
+}
+
+.history .carousel-indicators
+{
+    bottom: -60px;
+}
+
+.border-bottom
+{
+    width: 40px;
+    height: 2px;
+    background-color: white;
+    margin:0 auto;
+}
+
+.carousel-inner p
+{
+    font-size: 17px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    
+         
+}
+/*=======================================
+           Team
+=========================================*/
+.team{
+    width: 100%;
+    height :500px;
+}
+/*=======================================
+           Learn
+=========================================*/
+.learning{
+    width: 100%;
+    height :500px;
+}
+.part{
+    width: 100%;
+    height :500px;
+}
+.video{
+    width: 100%;
+    height :500px;
+}
+.sim{
+    width: 100%;
+    height :500px;
+}
