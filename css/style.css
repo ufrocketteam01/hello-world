@@ -3,6 +3,8 @@
 body
 {
     overflow-x: hidden;
+    background-color: #e8dddd !important;
+
     
 }
 
@@ -19,10 +21,6 @@ body
     opacity: 1;
     transition: all 1s ease-in;
 }
-
-
-
-
 
 
 
@@ -99,8 +97,155 @@ Slider--HOME
 
 }
 
+#rocket{
+max-height: 25%;
+max-width: 25%;
+}
+
+.rocket{
+    margin-bottom:; 20%;
+    animation: float 4s ease-in-out infinite;
+}
+
+.home{
+    position: relative;
+     margin-top: 10em;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
+
+/*=======================================
+           Fire
+=========================================*/
+
+.fire {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fire-main {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  animation: scaleUpDown 5s ease-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.fire-main .main-fire {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(farthest-corner at 10px 0, #d43300 0%, #ef5a00 95%);
+  transform: scaleX(0.8) rotate(45deg);
+  border-radius: 60% 40% 0% 40%;
+  filter: drop-shadow(0 0 10px #d43322);
+}
+
+.fire-main .particle-fire {
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  background-color: #ef5a00;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 50px #B63325);
+  animation: particleUp 2s ease-out 0;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.fire-right {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  animation: shake 8s ease-out 0;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.fire-right .main-fire {
+  position: absolute;
+  top: 15%;
+  right: -25%;
+  width: 80%;
+  height: 80%;
+  background-color: #ef5a00;
+  transform: scaleX(0.8) rotate(45deg);
+  border-radius: 60% 40% 0% 40%;
+  filter: drop-shadow(0 0 10px #d43322);
+}
+
+.fire-right .particle-fire {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background-color: #ef5a00;
+  transform: scaleX(0.8) rotate(45deg);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 50px #B63325);
+  animation: particleUp 2s ease-out 0;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.fire-left {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  animation: shake 9s ease-out 0;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.fire-left .main-fire {
+  position: absolute;
+  top: 15%;
+  left: -20%;
+  width: 80%;
+  height: 80%;
+  background-color: #ef5a00;
+  transform: scaleX(0.8) rotate(45deg);
+ border-radius: 60% 40% 0% 40%;
+  filter: drop-shadow(0 0 50px #B63325);
+}
+
+.fire-left .particle-fire {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 10%;
+  height: 10%;
+  background-color: #ef5a00;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px #d43322);
+  animation: particleDown 3s infinite ease-out 0;
+  animation-fill-mode: both;
+}
+
+.fire-bottom .main-fire {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 75%;
+  height: 75%;
+  background-color: #BD4B0E;
+  transform: scaleX(0.8) rotate(45deg);
+  border-radius: 60% 40% 0% 40%;
+  filter: blur(10px);
+  animation: glow 3s ease-out 0;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
 
 /*=======================================
             Animals
@@ -166,3 +311,4 @@ Slider--HOME
     width: 100%;
     height :500px;
 }
+
