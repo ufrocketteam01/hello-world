@@ -103,15 +103,16 @@ max-width: 25%;
 }
 
 .rocket{
+    position: relative;
+    top: -100px;
     margin-bottom:; 20%;
     animation: float 4s ease-in-out infinite;
 }
 
 .home{
     position: relative;
-     margin-top: 10em;
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -261,6 +262,9 @@ max-width: 25%;
     color: white;
     padding-top: 80px;
     padding-bottom: 150px;
+}
+.history{
+    margin: 20% 0 0 0;
 }
 
 .history .carousel-indicators
