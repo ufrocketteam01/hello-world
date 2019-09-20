@@ -34,9 +34,15 @@ Basic properties
     padding: 0;
 }
 
+.container{
+  margin: 0 !important;
+  padding: 0 15px;
+}
+
 .navbar
 {
     padding:10px 0px;
+    background-color: #e8dddd !important;
    /* background-color:rgba(135, 206, 135, 0.767) !important; */
     border-bottom: none !important;
     transition: all 0.5s ease-in-out;
@@ -70,8 +76,14 @@ Basic properties
 }
 .navbar-inverse{
     background-color: transparent !important;
+    padding-right:  35px;
+    position:absolute; 
+    right:0;
 }
 
+.navbar-brand {
+    padding: 0 15px 15px !important;
+}
 
 
 
@@ -84,8 +96,8 @@ Slider--HOME
 ======================*/
 .slider{
     width: 100%;
-    height :700px;
-  
+    height: 900px;
+    background-color: black;
     color:black;
 }
 
@@ -104,7 +116,7 @@ max-width: 25%;
 
 .rocket{
     position: relative;
-    top: -100px;
+    top: -180px;
     margin-bottom:; 20%;
     animation: float 4s ease-in-out infinite;
 }
@@ -116,40 +128,221 @@ max-width: 25%;
 }
 
 
+/*.fire {
+  position: relative;
+      display: block;
+      width: 126px;
+      height: 180px;
+      background-color: red;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      margin-left: auto;
+       margin-right: auto;
+    }*/
+
+
+
+
 
 /*=======================================
            Fire
 =========================================*/
 
-.fire {
+/*.fire {
   position: relative;
   width: 100px;
   height: 100px;
   background-color: transparent;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 
 .fire-main {
   position: absolute;
   height: 100%;
   width: 100%;
-  animation: scaleUpDown 5s ease-out;
+  /*animation: scaleUpDown 5s ease-out;*/
   animation-iteration-count: infinite;
   animation-fill-mode: both;
 }
-
-.fire-main .main-fire {
+.fire-inner {
   position: absolute;
-  width: 100%;
   height: 100%;
-  background-image: radial-gradient(farthest-corner at 10px 0, #d43300 0%, #ef5a00 95%);
-  transform: scaleX(0.8) rotate(45deg);
-  border-radius: 60% 40% 0% 40%;
+  width: 100%;
+  /*animation: scaleUpDown 5s ease-out;*/
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.fire-inner{
+  position: relative;
+  width: 5%;
+  height: 70%;
+  position:relative; 
+  margin-left: auto;
+  margin-right: auto;
+  top: -424px;
+  /*background-image: radial-gradient(farthest-corner at 10px 0, #DF5F36 0%, #FFA26A 95%);*/
+  background-image: linear-gradient(to top, #fff0, #ff6e29b5);
+  /* transform: scaleX(0.8) rotate(45deg); */
+  border-radius: 60% 60% 0% 0% / 60% 60% 40% 40%;
   filter: drop-shadow(0 0 10px #d43322);
 }
+.fire-main .main-fire {
+  position: absolute;
+  width: 10%;
+  height: 130%;
+  position:relative; 
+  margin-left: auto;
+  margin-right: auto;
+  /*background-image: radial-gradient(farthest-corner at 10px 0, #d43300 0%, #ef5a00 95%);*/
+  background-image: linear-gradient(to top, #ef5a0000, #d43300);
+  /* transform: scaleX(0.8) rotate(45deg); */
+  border-radius: 60% 60% 0% 0% / 60% 60% 40% 40%;
+  filter: drop-shadow(0 0 10px #F4A389);
+}
 
-.fire-main .particle-fire {
+
+// -----------------------------------------------------------------------------
+// Twinkle Animations
+// -----------------------------------------------------------------------------
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Twinkle Animations > Twinkle 1
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@-webkit-keyframes twinkle_one {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes twinkle_one {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes twinkle_one {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes twinkle_one {
+  0%   { opacity: 1; }
+  30%  { opacity: 1; }
+  70%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Twinkle Animations > Twinkle 2
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@-webkit-keyframes twinkle_two {
+  0%   { opacity: 1; }
+  25%  { opacity: 0; }
+  80%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes twinkle_two {
+  0%   { opacity: 1; }
+  25%  { opacity: 0; }
+  80%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes twinkle_two {
+  0%   { opacity: 1; }
+  25%  { opacity: 0; }
+  80%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes twinkle_two {
+  0%   { opacity: 1; }
+  25%  { opacity: 0; }
+  80%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Twinkle Animations > Twinkle 3
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+@-webkit-keyframes twinkle_three {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes twinkle_three {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes twinkle_three {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes twinkle_three {
+  0%   { opacity: 1; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.galaxy{
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: black;
+      
+      .star{
+        position: absolute;
+        background-color: white;
+      }
+
+      .star-type1{
+        width: 1px;
+        height: 1px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 1px 1px white;
+                box-shadow: 0 0 1px 1px white;
+        -webkit-animation: twinkle_one 3s ease-in-out infinite;
+           -moz-animation: twinkle_one 3s ease-in-out infinite;
+             -o-animation: twinkle_one 3s ease-in-out infinite;
+                animation: twinkle_one 3s ease-in-out infinite;
+      }
+      .star-type2{
+        width: 2px;
+        height: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 2px 1px white;
+                box-shadow: 0 0 2px 1px white;
+        -webkit-animation: twinkle_two 12s ease-in-out infinite;
+           -moz-animation: twinkle_two 12s ease-in-out infinite;
+             -o-animation: twinkle_two 12s ease-in-out infinite;
+                animation: twinkle_two 12s ease-in-out infinite;
+      }
+      .star-type3{
+        width: 2px;
+        height: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 0 2px 0 white;
+                box-shadow: 0 0 2px 0 white;
+        -webkit-animation: twinkle_three 7s ease-in-out infinite;
+           -moz-animation: twinkle_three 7s ease-in-out infinite;
+             -o-animation: twinkle_three 7s ease-in-out infinite;
+                animation: twinkle_three 7s ease-in-out infinite;
+      }
+      
+    }
+
+
+
+
+/*.fire-main .particle-fire {
   position: absolute;
   top: 60%;
   left: 45%;
@@ -158,11 +351,11 @@ max-width: 25%;
   background-color: #ef5a00;
   border-radius: 50%;
   filter: drop-shadow(0 0 50px #B63325);
-  animation: particleUp 2s ease-out 0;
+  /*animation: particleUp 2s ease-out 0;*/
   animation-iteration-count: infinite;
   animation-fill-mode: both;
-}
-
+}*/
+/*
 .fire-right {
   height: 100%;
   width: 100%;
@@ -247,7 +440,7 @@ max-width: 25%;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
 }
-
+*/
 /*=======================================
             Animals
 =========================================*/ 
