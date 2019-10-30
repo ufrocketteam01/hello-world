@@ -232,7 +232,7 @@ function rocket_cost(){
 
 
 	// check maximum altitudes
-	var hmax = Math.max(h);
+	var hmax = Math.max(...h);
 
 	// TODO: WHAT IS COST?
 	// choose cost 
