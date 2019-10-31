@@ -16,6 +16,7 @@
 		return o}
 		return r})()({1:[function(require,module,exports){
 var ode45 = require('ode45-cash-karp')
+var linear = require('everpolate').linear
 
 function getDesignSpan(){
  	var designSpan = Number(document.getElementById('finSpan').value);
@@ -90,17 +91,28 @@ window.testing_gianne = function(){
 	// define coefficients of lift and drag 
 	
 	// define coefficients of lift and drag
-	var CLofus = 0;       // CLo for fuselage
-	var CLofin = 0;       // CLo for fin
+	// var CLofus = 0;       // CLo for fuselage
+	// var CLofin = 0;       // CLo for fin
 
-	var CLafus =  0.125;       // CLalpha for fuselage
-	var CLafin = 0.125;     // CLalpha for fin
+	// var CLafus =  0.125;       // CLalpha for fuselage
+	// var CLafin = 0.125;     // CLalpha for fin
 
-	var CDofus = 0.015;     // CDo for fuselage
-	var CDofin = 0.015;    // CDo for fin
+	// var CDofus = 0.015;     // CDo for fuselage
+	// var CDofin = 0.015;    // CDo for fin
 
-	var CDafus = 0.0175;     // CDalpha for fuselage
-	var CDafin = 0.0175;  // CDalpha for fin
+	// var CDafus = 0.0175;     // CDalpha for fuselage
+	// var CDafin = 0.0175;  // CDalpha for fin
+
+	var CLofus = 0;      
+var CLofin = 0;      
+var CLafus = 0;     
+var CLafin = 0.1;   
+var CDofus = 0.7;    
+var CDofin = 0.015;   
+var CDafin = 0.0001; 
+var CDafus = 0.0;     
+var CDafin = 0.0001; 
+
 
 	// approximate thickness of airfoil
 	var design_thickness = design_chord/6;
@@ -139,7 +151,9 @@ window.testing_gianne = function(){
 
 	// generate the thrust and mass of propellant
 	var T  = rocket_thrust(t);
+	console.log(" T IS: " + T);
 	var mp = rocket_mass(t);
+	// console.log(" mp IS: " + mp);
 
 	// generate weight
 	var m = mp + mm + me + mc + mn + mfus + mfin;
@@ -165,14 +179,13 @@ window.testing_gianne = function(){
 
 
 	// generate state derivatives 
-	// var ydot = [][];
-	console.log("DYDT[4] IS "+ dydt[4]);
 	dydt[0]= y[2]*Math.cos(y[4]) + y[3]*Math.sin(y[4]);
-	dydt[1] = -y[2]*Math.sin(y[4]) + y[3]*Math.cos(y[4]);
-	dydt[2] = (-W*Math.sin(y[4]) + T + L*Math.sin(alpha) - D*Math.cos(alpha))/m;
+	dydt[1] = -1*y[2]*Math.sin(y[4]) + y[3]*Math.cos(y[4]);
+	dydt[2] = (-1*W*Math.sin(y[4]) + T + L*Math.sin(alpha) - D*Math.cos(alpha))/m;
 	dydt[3] = (W*Math.cos(y[4]) - L*Math.cos(alpha) - D*Math.sin(alpha))/m;
 	dydt[4] = y[5];
-	dydt[5] = -(xcp-xcg)*(L*Math.cos(alpha) + D*Math.sin(alpha))/I;
+	dydt[5] = -1*(xcp-xcg)*(L*Math.cos(alpha) + D*Math.sin(alpha))/I;
+	// console.log("y 0 " +y[0]);
 }
 
 function rocket_cost(){
@@ -181,61 +194,71 @@ function rocket_cost(){
 	var tfinal = 20;
 
 
-	var dt0 = 1.5, y0 = [0, 0, 0, 0, Math.PI/2, 0];
+	var dt0 = 10, y0 = [0, 0, 0, 0, Math.PI/2, 0];
 	var integrator = ode45( y0, rocketODE, 0, dt0);
 
 	// Integrate up to tmax:
-	var t = [], y = []
-	while( integrator.step(tfinal)) {
+	var t = [], y = [], count = 0, array = [];
+	while(integrator.step(tfinal)) {
 	  // Store the solution at this timestep:
-	  t.push( integrator.t )
-	  y.push( integrator.y )
+	 
+	  t.push( integrator.t );
+	  y.push( integrator.y );
+	  Array.prototype.push.apply(array, integrator.y);
 	}
 
+	var i, j, arr = [];
+
+	while(array.length>0){
+		arr.push(array.splice(0,6));
+	}
+	console.log(arr);
+
+
 // converting altitude/velocicty from meters to feet
-	var i, j;
-	for(i = 0; i<6; i++){
+
+	//console.log("LENGTH IS "+ y.length);
+	for(i = 0; i<arr.length; i++){
 		for(j = 0; j<4; j++){
-			y[i][j] = (y[i][j]/0.3048);
+			arr[i][j] = (arr[i][j]/0.3048);
 		}
 	}
+	//console.log("y  4 4 " +y[4]);
 
 	// Convert angles/rates from radians to degrees
 	// we convert them into arrays and go through them with a for loop 
 	// y(:,5:6) = y(:,5:6)*180/pi;
-	var ii, jj;
-	for(ii = 0; ii<6; ii++){
-		for(jj = 4; jj<=5; jj++){
-			// console.log("DEBUGGING when ii is " + ii+ " "+y[ii][jj]);
-			y[ii][jj] = ((y[ii][jj]*180)/Math.PI);
-			// console.log("DEBUGGING when jj is " + jj+" "+y[ii][jj]);
+	for(i = 0; i<arr.length; i++){
+		for(j = 4; j<=5; j++){
+			// console.log("DEBUGGING when i is " + i+ " "+y[i][j]);
+			arr[i][j] = ((arr[i][j]*180)/Math.PI);
+			// console.log("DEBUGGING when j is " + j+" "+y[i][j]);
 		}
 	}
 
-	// for (var i = 0; i<6; i++) {
- //  		console.log("row " + i);
- //   		for (var j in y[i]) {
-	//      	console.log("column "+ j);
-	//       	console.log(" " + y[i][j]);
- //      	}
-	// }
+	var h = [];
 
-	// Convert Earth z-axis into altitude
-	// we convert them into arrays and go through them with a for loop 
-	// var h = -y(:,2);
-
-	var xx, yy,h = [];
-
-	for(xx = 0; xx<6; xx++){
-			h[xx] = -1*y[xx][1];
+	for(i = 0; i<arr.length; i++){
+			h[i] = -1*arr[i][1];
+			// console.log(h[i])
 	}
+
+// for(var i = 0; i < y.length; i++) {
+//     var cube = y[i];
+//     for(var j = 0; j < cube.length; j++) {
+//         console.log("cube[" + i + "][" + j + "] = " + cube[j]);
+//     }
+// }
+
+	// for(i = 0; i<5; i++){
+	// 		console.log(y[4]);
+	// }
 
 
 	// check maximum altitudes
-	var hmax = Math.max(h);
+	var hmax = Math.max(...h);
 
-	// TODO: WHAT IS COST?
-	// choose cost 
+
 	return hmax;
 
 }
@@ -254,7 +277,6 @@ function rocket_thrust(t){
 	if (t < Math.max(tdata)){
 		// TODO: ask Spencer which interpolate awe can use from what Hailin found
 	    T  = interp1(tdata,Tdata,t); // INCLUDE JS FILES IN HTML
-	    var linear = require('everpolate').linear
 		//interpolation
 		T = linear(t, tdata, Tdata)
 	}
@@ -276,7 +298,6 @@ mdata = [182, 181.502, 179.937, 178.205, 163.498, 140.504, 105.3, 86.6684, 47.96
 var mP = 0;
 if (t < Math.max(tdata)){
     mP = interp1(tdata,mdata,t);
-    var linear = require('everpolate').linear
 	//interpolation
 	mP = linear(t, tdata, mdata)
 }
@@ -422,20 +443,20 @@ function linearRegression(functionValuesX, functionValuesY){
     , sum_x = 0
     , sum_y = 0
     , sum_xy = 0
-    , sum_xx = 0
+    , sum_i = 0
     , sum_yy = 0
 
   for (var i = 0; i < y.length; i++) {
     sum_x += x[i]
     sum_y += y[i]
     sum_xy += (x[i]*y[i])
-    sum_xx += (x[i]*x[i])
+    sum_i += (x[i]*x[i])
     sum_yy += (y[i]*y[i])
   }
 
-  regression.slope = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x)
+  regression.slope = (n * sum_xy - sum_x * sum_y) / (n*sum_i - sum_x * sum_x)
   regression.intercept = (sum_y - regression.slope * sum_x)/n
-  regression.rSquared = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2)
+  regression.rSquared = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_i-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2)
   regression.evaluate = function (pointsToEvaluate) {
     var x = help.makeItArrayIfItsNot(pointsToEvaluate)
       , result = []
