@@ -1,31 +1,37 @@
 var ode45 = require('ode45-cash-karp')
+var linear = require('everpolate').linear
 
 function getDesignSpan(){
  	var designSpan = Number(document.getElementById('finSpan').value);
- 	return designSpan;
+ 	// return designSpan;
+ 	return 0.02;
  }
  function getDesignChord(){
  	var designChord = Number(document.getElementById('finChord').value);
- 	return designChord;
+ 	// return designChord;
+ 	return 0.2;
  }
  function getDesignLocation(){
  	var designLocation = Number(document.getElementById('finLocation').value);
- 	return designLocation;
+ 	// return designLocation;
+ 	return 4.92;
  }
  function getWind(){
  	var wind = Number(document.getElementById('wind').value);
- 	return wind;
+ 	// return wind;
+ 	return 10;
  }
  function getDesignFuselage(){
  	var designFuselage = Number(document.getElementById('rocketLength').value);
- 	return designFuselage;
+ 	// return designFuselage;
+ 	return 6.18;
  }
- 
- function test(){
- 	console.log("HI");
+ // window.test = function(){
+ // 	console.log("HI");
 
- }
-function testing_gianne(){
+ // }
+
+window.testing_gianne = function(){
  	var design_span = getDesignSpan();
 	var design_chord = getDesignChord();
 	var design_location = getDesignLocation();
@@ -33,14 +39,14 @@ function testing_gianne(){
 	var design_fuselage = getDesignFuselage();
 	// var sum = design_chord + design_span;
 
-	var ode = rocket_cost();
-	var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + ode;
+	var hmax = rocket_cost();
+	var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
  	
  }
 
 
 // function rocket_ode(t,y){
-	var rocketODE = function (t,y){
+	var rocketODE = function (dydt,y,t){
 
 
 	design_span = getDesignSpan();
@@ -68,17 +74,28 @@ function testing_gianne(){
 	// define coefficients of lift and drag 
 	
 	// define coefficients of lift and drag
-	var CLofus = 0;       // CLo for fuselage
-	var CLofin = 0;       // CLo for fin
+	// var CLofus = 0;       // CLo for fuselage
+	// var CLofin = 0;       // CLo for fin
 
-	var CLafus =  0.125;       // CLalpha for fuselage
-	var CLafin = 0.125;     // CLalpha for fin
+	// var CLafus =  0.125;       // CLalpha for fuselage
+	// var CLafin = 0.125;     // CLalpha for fin
 
-	var CDofus = 0.015;     // CDo for fuselage
-	var CDofin = 0.015;    // CDo for fin
+	// var CDofus = 0.015;     // CDo for fuselage
+	// var CDofin = 0.015;    // CDo for fin
 
-	var CDafus = 0.0175;     // CDalpha for fuselage
-	var CDafin = 0.0175;  // CDalpha for fin
+	// var CDafus = 0.0175;     // CDalpha for fuselage
+	// var CDafin = 0.0175;  // CDalpha for fin
+
+	var CLofus = 0;      
+var CLofin = 0;      
+var CLafus = 0;     
+var CLafin = 0.1;   
+var CDofus = 0.7;    
+var CDofin = 0.015;   
+var CDafin = 0.0001; 
+var CDafus = 0.0;     
+var CDafin = 0.0001; 
+
 
 	// approximate thickness of airfoil
 	var design_thickness = design_chord/6;
@@ -95,8 +112,10 @@ function testing_gianne(){
 	var S = design_span * design_chord;
 
 	// compute body-axis velocities
-	var u = y(3)+wind*Math.cos(y(5));
-	var w = y(4)+wind*Math.sin(y(5));
+	var u = y[2]+wind*Math.cos(y[4]);
+	var w = y[3]+wind*Math.sin(y[4]);
+	// console.log("W IS: "+w);
+	// console.log("U IS: "+u);
 
 	// compute total velocity
 	var V = Math.sqrt(Math.pow(u,2) + Math.pow(w,2));
@@ -107,14 +126,17 @@ function testing_gianne(){
 	if (u != 0){
 	    alpha = Math.atan(w/u);
 	}
+	// console.log(" U IS " + u);
 
 	// compute lift and drag at this velocity and angle-of-attack
-	var L = .5*rho*Math.pow(V,2)*(A*(CLofus + CLafus*alpha) + S*(CLofin + CLafin*alpha));
-	var D = .5*rho*Math.pow(V,2)*(A*(CDofus + CDafus*alpha) + S*(CDofin + CDafin*Math.pow(alpha,2)));
+	var L = 0.5*rho*Math.pow(V,2)*(A*(CLofus + CLafus*alpha) + S*(CLofin + CLafin*alpha));
+	var D = 0.5*rho*Math.pow(V,2)*(A*(CDofus + CDafus*alpha) + S*(CDofin + CDafin*Math.pow(alpha,2)));
 
 	// generate the thrust and mass of propellant
 	var T  = rocket_thrust(t);
+	console.log(" T IS: " + T);
 	var mp = rocket_mass(t);
+	// console.log(" mp IS: " + mp);
 
 	// generate weight
 	var m = mp + mm + me + mc + mn + mfus + mfin;
@@ -130,23 +152,23 @@ function testing_gianne(){
 	// end simulation if we've hit ground already
 	//  ******** STUCK ON THIS PART WITH Y: what is y(?) **********
 	if (y[1] > 1){
-		var qq;
-		for(qq = 0; qq<6; qq++){
-			y[qq] = y[qq] * 0;
-		}
+		// var qq;
+		// for(qq = 0; qq<6; qq++){
+		// 	y[qq] = y[qq] * 0;
+		// }
+		y.fill(0);
 	}
 
 
 
 	// generate state derivatives 
-	// var ydot = [][];
-
-	rocketODE[0,0] = y[2]*Math.cos(y[4]) + y[3]*Math.sin(y[4]);
-	rocketODE[1,0] = -y[2]*Math.sin(y[4]) + y[3]*Math.cos(y[4]);
-	rocketODE[2,0] = (-W*Math.sin(y[4]) + T + L*Math.sin(alpha) - D*Math.cos(alpha))/m;
-	rocketODE[3,0] = (W*Math.cos(y[4]) - L*Math.cos(alpha) - D*Math.sin(alpha))/m;
-	rocketODE[4,0] = y[5];
-	rocketODE[5,0] = -(xcp-xcg)*(L*Math.cos(alpha) + D*Math.sin(alpha))/I;
+	dydt[0]= y[2]*Math.cos(y[4]) + y[3]*Math.sin(y[4]);
+	dydt[1] = -1*y[2]*Math.sin(y[4]) + y[3]*Math.cos(y[4]);
+	dydt[2] = (-1*W*Math.sin(y[4]) + T + L*Math.sin(alpha) - D*Math.cos(alpha))/m;
+	dydt[3] = (W*Math.cos(y[4]) - L*Math.cos(alpha) - D*Math.sin(alpha))/m;
+	dydt[4] = y[5];
+	dydt[5] = -1*(xcp-xcg)*(L*Math.cos(alpha) + D*Math.sin(alpha))/I;
+	// console.log("y 0 " +y[0]);
 }
 
 function rocket_cost(){
@@ -155,67 +177,71 @@ function rocket_cost(){
 	var tfinal = 20;
 
 
-
-	// simulate launch
-	// TODO: what are each of these variables being passed into ode45
-	// https://github.com/scijs/ode45-cash-karp
-
-	// var ode45 = require('ode45-cash-karp')
-
-	// var i;
-	// for( i =0; i<tfinal; i++){
-	// 	ode45([0 0 0 0 pi/2 0], rocketODE, i, 0.1 )
-	// }
-
-	var dt0 = 0.1, y0 = [0, 0, 0, 0, Math.PI/2, 0];
+	var dt0 = 10, y0 = [0, 0, 0, 0, Math.PI/2, 0];
 	var integrator = ode45( y0, rocketODE, 0, dt0);
 
 	// Integrate up to tmax:
-	var t = [], y = []
-	while( integrator.step(tfinal)) {
+	var t = [], y = [], count = 0, array = [];
+	while(integrator.step(tfinal)) {
 	  // Store the solution at this timestep:
-	  t.push( integrator.t )
-	  y.push( integrator.y )
+	 
+	  t.push( integrator.t );
+	  y.push( integrator.y );
+	  Array.prototype.push.apply(array, integrator.y);
 	}
-	// [t,y] = ode45(@rocket_ode,[0 tfinal],[0 0 0 0 pi/2 0]);
 
-	// Convert altitude/velocity from meters to feet
-	// we convert them into arrays and go through them with a for loop 
-	// y(:,1:4) = y(:,1:4)/.3048;
+	var i, j, arr = [];
 
-	var i, j;
-	for(i = 0; i<6; i++){
+	while(array.length>0){
+		arr.push(array.splice(0,6));
+	}
+	console.log(arr);
+
+
+// converting altitude/velocicty from meters to feet
+
+	//console.log("LENGTH IS "+ y.length);
+	for(i = 0; i<arr.length; i++){
 		for(j = 0; j<4; j++){
-			y[i][j] = (y[i][j]/0.3048);
+			arr[i][j] = (arr[i][j]/0.3048);
 		}
 	}
+	//console.log("y  4 4 " +y[4]);
 
 	// Convert angles/rates from radians to degrees
 	// we convert them into arrays and go through them with a for loop 
 	// y(:,5:6) = y(:,5:6)*180/pi;
-	var ii, jj;
-	for(ii = 0; ii<6; ii++){
-		for(jj = 4; jj<=5; jj++){
-			y[ii][jj] = (y[ii][jj]*180/pi);
+	for(i = 0; i<arr.length; i++){
+		for(j = 4; j<=5; j++){
+			// console.log("DEBUGGING when i is " + i+ " "+y[i][j]);
+			arr[i][j] = ((arr[i][j]*180)/Math.PI);
+			// console.log("DEBUGGING when j is " + j+" "+y[i][j]);
 		}
 	}
 
-	// Convert Earth z-axis into altitude
-	// we convert them into arrays and go through them with a for loop 
-	// var h = -y(:,2);
+	var h = [];
 
-	var xx, yy,h = [];
-
-	for(xx = 0; xx<6; xx++){
-			h[xx] = y[xx][1];
+	for(i = 0; i<arr.length; i++){
+			h[i] = -1*arr[i][1];
+			// console.log(h[i])
 	}
+
+// for(var i = 0; i < y.length; i++) {
+//     var cube = y[i];
+//     for(var j = 0; j < cube.length; j++) {
+//         console.log("cube[" + i + "][" + j + "] = " + cube[j]);
+//     }
+// }
+
+	// for(i = 0; i<5; i++){
+	// 		console.log(y[4]);
+	// }
 
 
 	// check maximum altitudes
-	var hmax = Math.max(h);
+	var hmax = Math.max(...h);
 
-	// TODO: WHAT IS COST?
-	// choose cost 
+
 	return hmax;
 
 }
@@ -234,7 +260,6 @@ function rocket_thrust(t){
 	if (t < Math.max(tdata)){
 		// TODO: ask Spencer which interpolate awe can use from what Hailin found
 	    T  = interp1(tdata,Tdata,t); // INCLUDE JS FILES IN HTML
-	    var linear = require('everpolate').linear
 		//interpolation
 		T = linear(t, tdata, Tdata)
 	}
@@ -256,19 +281,9 @@ mdata = [182, 181.502, 179.937, 178.205, 163.498, 140.504, 105.3, 86.6684, 47.96
 var mP = 0;
 if (t < Math.max(tdata)){
     mP = interp1(tdata,mdata,t);
-    var linear = require('everpolate').linear
 	//interpolation
 	mP = linear(t, tdata, mdata)
 }
 
 return mP;
 }
-
-
-
-
-
-
-
-
-
