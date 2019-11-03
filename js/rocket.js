@@ -14,17 +14,17 @@ function getDesignSpan(){
  function getDesignLocation(){
  	var designLocation = Number(document.getElementById('finLocation').value);
  	// return designLocation;
- 	return 4.92;
+ 	return 4.92+10;
  }
  function getWind(){
  	var wind = Number(document.getElementById('wind').value);
  	// return wind;
- 	return 10;
+ 	return 10+20;
  }
  function getDesignFuselage(){
  	var designFuselage = Number(document.getElementById('rocketLength').value);
  	// return designFuselage;
- 	return 6.18;
+ 	return 6.18-3;
  }
  // window.test = function(){
  // 	console.log("HI");
@@ -40,7 +40,7 @@ window.testing_gianne = function(){
 	// var sum = design_chord + design_span;
 
 	var hmax = rocket_cost();
-	var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
+	var outputText = document.getElementById('output_text').innerHTML = "Maximum height: " + hmax;
  	
  }
 
@@ -73,28 +73,28 @@ window.testing_gianne = function(){
 
 	// define coefficients of lift and drag 
 	
-	// define coefficients of lift and drag
-	// var CLofus = 0;       // CLo for fuselage
-	// var CLofin = 0;       // CLo for fin
+	define coefficients of lift and drag
+	var CLofus = 0;       // CLo for fuselage
+	var CLofin = 0;       // CLo for fin
 
-	// var CLafus =  0.125;       // CLalpha for fuselage
-	// var CLafin = 0.125;     // CLalpha for fin
+	var CLafus =  0.125;       // CLalpha for fuselage
+	var CLafin = 0.125;     // CLalpha for fin
 
-	// var CDofus = 0.015;     // CDo for fuselage
-	// var CDofin = 0.015;    // CDo for fin
+	var CDofus = 0.015;     // CDo for fuselage
+	var CDofin = 0.015;    // CDo for fin
 
-	// var CDafus = 0.0175;     // CDalpha for fuselage
-	// var CDafin = 0.0175;  // CDalpha for fin
+	var CDafus = 0.0175;     // CDalpha for fuselage
+	var CDafin = 0.0175;  // CDalpha for fin
 
-	var CLofus = 0;      
-var CLofin = 0;      
-var CLafus = 0;     
-var CLafin = 0.1;   
-var CDofus = 0.7;    
-var CDofin = 0.015;   
-var CDafin = 0.0001; 
-var CDafus = 0.0;     
-var CDafin = 0.0001; 
+// 	var CLofus = 0;      
+// var CLofin = 0;      
+// var CLafus = 0;     
+// var CLafin = 0.1;   
+// var CDofus = 0.7;    
+// var CDofin = 0.015;   
+// var CDafin = 0.0001; 
+// var CDafus = 0.0;     
+// var CDafin = 0.0001; 
 
 
 	// approximate thickness of airfoil

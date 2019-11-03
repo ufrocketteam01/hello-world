@@ -15,17 +15,17 @@ function getDesignSpan(){
  function getDesignLocation(){
  	var designLocation = Number(document.getElementById('finLocation').value);
  	// return designLocation;
- 	return 4.92;
+ 	return 4.92+5;
  }
  function getWind(){
  	var wind = Number(document.getElementById('wind').value);
  	// return wind;
- 	return 10;
+ 	return 10+30;
  }
  function getDesignFuselage(){
  	var designFuselage = Number(document.getElementById('rocketLength').value);
  	// return designFuselage;
- 	return 6.18;
+ 	return 6.18+2;
  }
  // window.test = function(){
  // 	console.log("HI");
@@ -75,27 +75,27 @@ window.testing_gianne = function(){
 	// define coefficients of lift and drag 
 	
 	// define coefficients of lift and drag
-	// var CLofus = 0;       // CLo for fuselage
-	// var CLofin = 0;       // CLo for fin
+	var CLofus = 0;       // CLo for fuselage
+	var CLofin = 0;       // CLo for fin
 
-	// var CLafus =  0.125;       // CLalpha for fuselage
-	// var CLafin = 0.125;     // CLalpha for fin
+	var CLafus =  0.125;       // CLalpha for fuselage
+	var CLafin = 0.125;     // CLalpha for fin
 
-	// var CDofus = 0.015;     // CDo for fuselage
-	// var CDofin = 0.015;    // CDo for fin
+	var CDofus = 0.015;     // CDo for fuselage
+	var CDofin = 0.015;    // CDo for fin
 
-	// var CDafus = 0.0175;     // CDalpha for fuselage
-	// var CDafin = 0.0175;  // CDalpha for fin
+	var CDafus = 0.0175;     // CDalpha for fuselage
+	var CDafin = 0.0175;  // CDalpha for fin
 
-	var CLofus = 0;      
-var CLofin = 0;      
-var CLafus = 0;     
-var CLafin = 0.1;   
-var CDofus = 0.7;    
-var CDofin = 0.015;   
-var CDafin = 0.0001; 
-var CDafus = 0.0;     
-var CDafin = 0.0001; 
+// 	var CLofus = 0;      
+// var CLofin = 0;      
+// var CLafus = 0;     
+// var CLafin = 0.1;   
+// var CDofus = 0.7;    
+// var CDofin = 0.015;   
+// var CDafin = 0.0001; 
+// var CDafus = 0.0;     
+// var CDafin = 0.0001; 
 
 
 	// approximate thickness of airfoil
@@ -135,7 +135,7 @@ var CDafin = 0.0001;
 
 	// generate the thrust and mass of propellant
 	var T  = rocket_thrust(t);
-	console.log(" T IS: " + t);
+	// console.log(" T IS: " + t);
 	var mp = rocket_mass(t);
 	// console.log(" mp IS: " + mp);
 
@@ -239,7 +239,6 @@ function rocket_thrust(t){
 	var ThrustData = [0, 113.792, 193.101, 172.412, 256.893, 296.548, 303.445, 305.169, 298.272, 291.376, 266.893, 244.652, 222.411, 10.345, 0];
 
 	var T = 0;
-	console.log(t)
 	if (t <Math.max(...tdata)){
 		T = linear(t, tdata, ThrustData);
 	}
@@ -260,11 +259,13 @@ function rocket_mass(t){
 mdata = [182/1000, 181.502/1000, 179.937/1000, 178.205/1000, 163.498/1000, 140.504/1000, 105.3/1000, 86.6684/1000, 47.9627/1000, 37.6479/1000, 24.5108/1000, 18.5712/1000, 14.5038/1000, 0.111027/1000, 0];
 
 var mP = 0;
-// if (t <Math.max(...tdata)){
-// 	//interpolation
-// 	mP = linear(t, tdata, mdata)
-// 	// console.log("INSIDE");
-// }
+if (t <Math.max(...tdata)){
+	//interpolation
+	mP = linear(t, tdata, mdata)
+	// console.log("INSIDE");
+}
+
+mP = mP - 0;
 
 return mP;
 }
