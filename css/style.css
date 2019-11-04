@@ -187,3 +187,7 @@ Slider--HOME
 .rocket-nose{
     
 }
+
+#canvas{
+    position: absolute !important;
+}
