@@ -183,3 +183,18 @@ Slider--HOME
     width: 100%;
     height :100%;
 }
+
+#field {
+    position: relative;
+    height: 300px;
+    background-color: lightgreen;
+  }
+  #ball, #ball2, #ball3 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+  }
+  #ball { background: red; }
