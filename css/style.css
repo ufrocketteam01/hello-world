@@ -187,6 +187,52 @@ Slider--HOME
 .rocket-nose{
     
 }
+.blueprint-rocket{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    /*height: auto;*/
+}
+
+.tooltip{
+
+    padding:5px !important;
+    font-size:15px !important;
+
+
+}
+.tooltip-inner {
+    width:350px;
+    padding:8px 3px !important;
+    color:#FFF !important;
+     -webkit-border-radius:25px !important;
+    -moz-border-radius:25px !important;
+    border-radius:25px !important;
+}
+
+
+.tooltip-arrow{
+    position:absolute !important;
+    width:0 !important;
+    height:0 !important;
+}
+
+.blueprint{
+    /*position: relative;*/
+    /* center the div */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /* give it dimensions */
+    min-height: 10em;
+    width: 50%;
+    /* just for example presentation */
+    top: 5em;
+    background-color: blue;
+}
+
 
 #canvas{
     position: absolute !important;
