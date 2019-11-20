@@ -336,7 +336,7 @@ h4.team-member-designation
     width: 70%;
     position:absolute;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-20%, 0);
 }
 .sim{
     width: 100%;

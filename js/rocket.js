@@ -334,7 +334,7 @@ function draw(t,yArr){
         type: 'scatter'
       }
       const data = [trace1]
-      Plotly.newPlot('plot', data)
+      // Plotly.newPlot('plot', data)
  }
 
 
