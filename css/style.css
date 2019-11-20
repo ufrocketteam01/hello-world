@@ -48,6 +48,15 @@ Basic properties
     border-bottom: none !important;
     transition: all 0.5s ease-in-out;
 }
+.navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
 
 .navbar  ul  li a
 {
