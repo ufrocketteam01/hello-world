@@ -2,6 +2,8 @@
 var ode45 = require('ode45-cash-karp')
 var linear = require('everpolate').linear
 
+import regression from 'regression';
+
 function getDesignSpan(){
  	var designSpan = Number(document.getElementById('finSpan').value);
  	// return designSpan;
@@ -27,19 +29,22 @@ function getDesignSpan(){
  	// return designFuselage;
  	return 6.18+2;
  }
+  function getDesignFuselage(){
+ 	var designFuselage = Number(document.getElementById('rocketLength').value);
+ 	// return designFuselage;
+ 	return 6.18+2;
+ }
+   function getRocketDiameter(){
+ 	var rocketDiameter = Number(document.getElementById('rocketDiameter').value);
+ 	// return rocketDiameter;
+ 	return 0.038;
+ }
  // window.test = function(){
  // 	console.log("HI");
 
  // }
 
 window.testing_gianne = function(){
- 	var design_span = getDesignSpan();
-	var design_chord = getDesignChord();
-	var design_location = getDesignLocation();
-	var wind = getWind();
-	var design_fuselage = getDesignFuselage();
-	// var sum = design_chord + design_span;
-
 	var hmax = rocket_cost();
 	var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
  	
@@ -50,11 +55,12 @@ window.testing_gianne = function(){
 	var rocketODE = function (dydt,y,t){
 
 
-	design_span = getDesignSpan();
-	design_chord = getDesignChord();
-	design_location = getDesignLocation();
-	wind = getWind();
-	design_fuselage = getDesignFuselage();
+	var design_span = getDesignSpan();
+	var design_chord = getDesignChord();
+	var design_location = getDesignLocation();
+	var wind = getWind();
+	var design_fuselage = getDesignFuselage();
+	var rocketDiameter = getRocketDiameter();
 
 	// define constants
 
@@ -107,7 +113,7 @@ window.testing_gianne = function(){
 	var mfin = rhofin*(design_span*design_chord*design_thickness);
 
 	// compute reference area for fuselage
-	var A = Math.PI*Math.pow(.038/2,2);
+	var A = Math.PI*Math.pow(rocketDiameter/2,2);
 
 	// compute reference area for fin
 	var S = design_span * design_chord;
@@ -176,22 +182,25 @@ function rocket_cost(){
 	var integrator = ode45( y0, rocketODE, 0, dt0);
 
 	// Integrate up to tmax:
-	var t = [], y = [], count = 0, array = [];
+	var t = [], y = [], count = 0, array = [], tempArr = [];
 	while(integrator.step(tfinal)) {
 	  // Store the solution at this timestep:
-	 
 	  t.push( integrator.t );
+	  // Array.prototype.push.apply(tempArr, integrator.t);
 	  y.push( integrator.y );
 	  Array.prototype.push.apply(array, integrator.y);
 	}
 
-	var i, j, arr = [];
+
+	var i, j, arr = [], tArr = [];
 
 	while(array.length>0){
 		arr.push(array.splice(0,6));
 	}
-	// console.log(arr);
 
+	// while(tempArr.length>0){
+	// 	tArr.push(tempArr.splice(0,6));
+	// }
 
 // converting altitude/velocicty from meters to feet
 
@@ -222,8 +231,15 @@ function rocket_cost(){
 
 	// check maximum altitudes
 	var hmax = Math.max(...h);
+	var data = [];
+	for(i = 0; i<h.length; i++){
+		data.push(h[i], t[i]);
+	}
 
-
+	const result = regression.polynomial(data, { order: 2 });
+	console.log(result);
+	 
+	// draw(h, t);
 	return hmax;
 
 }
@@ -269,6 +285,32 @@ mP = mP - 0;
 
 return mP;
 }
+
+
+function draw(t,yArr){
+
+      // compile the expression once
+
+
+      // evaluate the expression repeatedly for different values of x
+      
+
+      // render the plot using plotly
+      const trace1 = {
+        x: yArr,
+        y: t,
+        type: 'scatter'
+      }
+      const data = [trace1]
+      Plotly.newPlot('plot', data)
+ }
+
+
+
+
+
+
+
 },{"everpolate":2,"ode45-cash-karp":8}],2:[function(require,module,exports){
 'use strict';
 
