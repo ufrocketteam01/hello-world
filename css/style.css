@@ -184,9 +184,6 @@ Slider--HOME
     height :100%;
 }
 
-.rocket-nose{
-    
-}
 .blueprint-rocket{
     display: block;
     margin-left: auto;
@@ -231,9 +228,4 @@ Slider--HOME
     /* just for example presentation */
     top: 5em;
     background-color: blue;
-}
-
-
-#canvas{
-    position: absolute !important;
 }
