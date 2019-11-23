@@ -320,13 +320,6 @@ return mP;
 
 
 function draw(t,yArr){
-
-      // compile the expression once
-
-
-      // evaluate the expression repeatedly for different values of x
-      
-
       // render the plot using plotly
       const trace1 = {
         x: yArr,
