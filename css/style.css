@@ -251,7 +251,11 @@ max-width: 25%;
 {
     margin-top: 50px;
 }
-
+.teams h2 {
+    font-family: 'Aclonica';
+    font-size: 40px; 
+    color: rgb(140, 116, 228);
+}
 .team-member
 {
     margin:0 15px;
@@ -356,17 +360,17 @@ h4.team-member-designation
 #field {
     position: relative;
     height: 300px;
-    background-color: lightgreen;
+  
   }
   #ball, #ball2, #ball3 {
     position: absolute;
-    left: 0;
+    left: 350px;
     bottom: 0;
     width: 1em;
     height: 1em;
     border-radius: 0.5em;
   }
-  #ball { background: red; }
+
 
 .blueprint-rocket{
     display: block;
