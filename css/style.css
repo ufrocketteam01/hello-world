@@ -4,7 +4,7 @@ body
 {
     overflow-x: hidden;
     height: 100%;
-    background-color: #e8dddd !important;
+   
 
     
 }
@@ -201,14 +201,17 @@ max-width: 25%;
 =========================================*/ 
 .carousel-inner img
 {
-   
+    width: 80px;
+        height: 50px;
+        border-radius: 10%;
+        border: 3px solid rgb(12, 164, 224);
     
     padding: 5px;
 }
 .history{
     background-color: skyblue;
-    background-attachment: fixed;
-    background-image:url(..//img/timg\ \(2\).jpg);
+    background-position: center;
+    background-image:url(..//img/1.jpg);
     padding-top: -180px;
     padding-bottom: 90px;
     margin-left: -550px;
@@ -220,11 +223,14 @@ max-width: 25%;
 .history .carousel-indicators
 {
     bottom: -60px;
+     margin-right: -100px;
+    margin-left:550px;
+    border-radius: 1px;
 }
 
 .border-bottom
 {
-    width: 100px;
+    width: 200px;
     height: 5px;
     background-color: blue;
     margin:0 auto;
@@ -247,6 +253,16 @@ max-width: 25%;
 /*=======================================
            Team
 =========================================*/
+.teams{
+  
+    
+    background-image:url(..//img/timg\ \(2\).jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 80px;
+    padding-bottom: 150px;
+}
 .team-member
 {
     margin-top: 50px;
@@ -268,7 +284,7 @@ max-width: 25%;
 
 
 h4.team-member-name
-{
+{ color:rgb(22, 7, 241);
     font-size: 19px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -277,7 +293,7 @@ h4.team-member-name
 
 h4.team-member-designation
 {
-    color: #34c6d3;
+     color:green;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -316,24 +332,17 @@ h4.team-member-designation
 /*=======================================
            Team
 =========================================*/
-.team{
-    width: 100%;
-    height :100%;
-}
+
 /*=======================================
            Learn
 =========================================*/
-.learning{
-    width: 100%;
-    height :100%;
-}
-.part{
-    width: 100%;
-    height :100%;
-}
 .video{
     width: 100%;
-    height :100%;
+    height :900px;
+    background-image:url(..//img/timg\ \(2\).jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    
 }
 .video-display{
     padding-bottom:56.25%;
@@ -349,28 +358,81 @@ h4.team-member-designation
     width: 70%;
     position:absolute;
     left: 50%;
-    transform: translate(-20%, 0);
+    transform: translate(-50%, 0);
 }
-.sim{
-    width: 100%;
+.center{
+    position: relative;
+    top:80%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    width:800px;
     height :100%;
+    
+ }
+
+ .blueprint-rocket{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    /*height: auto;*/
 }
 
+.tooltip{
+
+    padding:5px !important;
+    font-size:15px !important;
+
+
+}
+.tooltip-inner {
+    width:350px;
+    padding:8px 3px !important;
+    color:#FFF !important;
+     -webkit-border-radius:25px !important;
+    -moz-border-radius:25px !important;
+    border-radius:25px !important;
+   
+}
+
+
+.tooltip-arrow{
+    position:absolute !important;
+    width:0 !important;
+    height:0 !important;
+}
+
+.blueprint{
+    /*position: relative;*/
+    /* center the div */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /* give it dimensions */
+    min-height: 10em;
+    width: 50%;
+    /* just for example presentation */
+    top: 5em;
+    background-color: blue;
+}
 
 #field {
     position: relative;
     height: 300px;
-  
+   
+   
   }
   #ball, #ball2, #ball3 {
+
     position: absolute;
-    left: 350px;
+    left: 400px;
     bottom: 0;
     width: 1em;
     height: 1em;
     border-radius: 0.5em;
   }
-
+ 
 
 .blueprint-rocket{
     display: block;
