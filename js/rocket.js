@@ -57,7 +57,7 @@ function getDesignSpan(){
  }
 
 
-window.testing_gianne = function(){
+window.testing= function(){
     var hmax = rocket_cost();
     var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
  }
