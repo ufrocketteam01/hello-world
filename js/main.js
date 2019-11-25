@@ -12,7 +12,18 @@ jQuery(document).ready(function(){
   	});
    	new WOW().init();
 });
-
+$("#team-members").owlCarousel({
+	items:4,
+	autoplay:true,
+	smartSpeed:100,
+	loop:true,
+	autoplayHoverPause:true,
+	 
+});
+$('.counter').counterUp({
+		  delay: 10,
+		  time: 4000
+	  });
 
 $(function () {
 	$('[data-toggle="tooltip"]').tooltip()
