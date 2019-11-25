@@ -57,7 +57,7 @@ function getDesignSpan(){
  }
 
 
-window.testing= function(){
+window.testing = function(){
     var hmax = rocket_cost();
     var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
  }
@@ -269,7 +269,7 @@ function rocket_cost(){
     // const equation = regression.polynomial([[0, 1], [32, 67], [12, 79]]);
     
      
-    draw(h, t);
+   // draw(h, t);
     step();
     return hmax;
 
@@ -334,7 +334,7 @@ function draw(t,yArr){
         type: 'scatter'
       }
       const data = [trace1]
-      // Plotly.newPlot('plot', data)
+      Plotly.newPlot('plot', data)
  }
 
 
