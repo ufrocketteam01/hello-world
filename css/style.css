@@ -337,7 +337,7 @@ h4.team-member-designation
     left: 50%;
     transform:translate(-50%, -50%);
     width:800px;
-    height :100%;
+    height :60%;
     
  }
 
@@ -349,14 +349,14 @@ h4.team-member-designation
     /*height: auto;*/
 }
 
-.tooltip{
+.popover{
 
     padding:5px !important;
     font-size:15px !important;
 
 
 }
-.tooltip-inner {
+.popover-inner {
     width:350px;
     padding:8px 3px !important;
     color:#FFF !important;
@@ -367,7 +367,7 @@ h4.team-member-designation
 }
 
 
-.tooltip-arrow{
+.popover-arrow{
     position:absolute !important;
     width:0 !important;
     height:0 !important;
@@ -404,7 +404,6 @@ h4.team-member-designation
     border-radius: 0.5em;
   }
  
-
 
  
 

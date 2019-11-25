@@ -25,14 +25,5 @@ $('.counter').counterUp({
 		  time: 4000
 	  });
 
-$(function () {
-	$('[data-toggle="tooltip"]').tooltip()
-});
 
-$('#element').tooltip('update')
 
-$(document).mousemove( function(e) {    
-    var mouseX = e.pageX - $('#blueprint-rocket').offset().left + 275;
-    var mouseY = e.pageY - $('#blueprint-rocket').offset().top - 565;
-    $('.tooltip').css({'top':mouseY,'left':mouseX}).fadeIn('slow');
-}); 
