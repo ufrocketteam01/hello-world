@@ -26,10 +26,13 @@ $("#team-members").owlCarousel({
 // 	  });
 
 
-$(function () {
-	$('[data-toggle="popover"]').popover()
-});
-$('#part').tooltip('update')
+$(document).ready(function () {
+
+    $('[data-toggle="popover"]').popover() });
+ 
+
+
+$('#part').popover('update')
 var clickTop,clickLeft=0;
     $(document).click(function(e){
         clickTop =e.pageY;
@@ -63,3 +66,4 @@ $('html').popover({
                 $("[rel=popover]").not(e.target).popover("destroy");
                 $(".popover").remove();                    
             });
+

@@ -333,7 +333,7 @@ h4.team-member-designation
 }
 .center{
     position: relative;
-    top:30%;
+    top:40%;
     left: 50%;
     transform:translate(-50%, -50%);
     width:800px;
@@ -342,7 +342,7 @@ h4.team-member-designation
  }
 
  .part{
-    padding-top: 30%;
+    padding-top: 35%;
  }
 
  .blueprint-rocket{
