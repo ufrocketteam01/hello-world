@@ -59,7 +59,7 @@ function getDesignSpan(){
 
 window.testing = function(){
     var hmax = rocket_cost();
-    var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
+    // var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
  }
 
 
@@ -351,7 +351,7 @@ function draw(t,yArr){
     progress = (timestamp - start) / duration / 1000; // percent
     t = (timestamp - start)/1000;
 
-    x = progress * maxX/gridSize; // x = ƒ(t)
+    x = (progress * maxX/gridSize)+1; // x = ƒ(t)
 
     y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t)*(1/500); // y = ƒ(x)
 
