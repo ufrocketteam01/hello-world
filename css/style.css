@@ -4,8 +4,6 @@ body
 {
     overflow-x: hidden;
     height: 100%;
-   
-
     
 }
 
@@ -25,6 +23,10 @@ body
 
 
 
+
+
+
+
 /*====================
 Basic properties
 ======================*/
@@ -35,37 +37,23 @@ Basic properties
     padding: 0;
 }
 
-.container{
-  margin: 0 !important;
-  padding: 0 15px;
-}
-
 .navbar
 {
     padding:10px 0px;
-    background-color: #e8dddd !important;
    /* background-color:rgba(135, 206, 135, 0.767) !important; */
     border-bottom: none !important;
     transition: all 0.5s ease-in-out;
 }
-.navbar-nav {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: row !important;
-    flex-direction: row !important;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
 
 .navbar  ul  li a
 {
-    color: black !important;
+    color: skyblue !important;
     text-transform: uppercase;
     letter-spacing:1px;
     font-weight:bold;
     font-size:14px;
     transition: all 0.5s ease-in
+    
 }
 
 .navbar ul li a:hover, .navbar ul li a:focus
@@ -81,19 +69,20 @@ Basic properties
 }
 .about
 {
-    border: 1px solid pink;
+    border: 1px solid skyblue; 
     border-radius:58px;
 }
 .navbar-inverse{
     background-color: transparent !important;
-    padding-right:  35px;
-    position:absolute; 
-    right:0;
 }
 
 .navbar-brand {
     padding: 0 15px 15px !important;
 }
+
+
+
+
 
 
 /*====================
@@ -125,7 +114,7 @@ max-width: 25%;
 .rocket{
     position: relative;
     top: -180px;
-    margin-bottom:; 20%;
+    margin-bottom: ; 20%;
     animation: float 4s ease-in-out infinite;
     z-index: 2;
 }
@@ -196,22 +185,28 @@ max-width: 25%;
 }
 
 
+
 /*=======================================
-            history
+     history
 =========================================*/ 
+
+
 .carousel-inner img
 {
-    width: 80px;
+   
+        width: 80px;
         height: 50px;
         border-radius: 10%;
         border: 3px solid rgb(12, 164, 224);
+        padding: 5px;
     
-    padding: 5px;
 }
 .history{
     background-color: skyblue;
+   
     background-position: center;
     background-image:url(..//img/1.jpg);
+  
     padding-top: -180px;
     padding-bottom: 90px;
     margin-left: -550px;
@@ -223,7 +218,7 @@ max-width: 25%;
 .history .carousel-indicators
 {
     bottom: -60px;
-     margin-right: -100px;
+    margin-right: -100px;
     margin-left:550px;
     border-radius: 1px;
 }
@@ -235,7 +230,7 @@ max-width: 25%;
     background-color: blue;
     margin:0 auto;
 }
-.history h2{
+.history h2 {
     font-family: 'Aclonica';
     font-size: 40px; 
     color: rgb(140, 116, 228);
@@ -263,15 +258,17 @@ max-width: 25%;
     padding-top: 80px;
     padding-bottom: 150px;
 }
-.team-member
-{
-    margin-top: 50px;
-}
 .teams h2 {
     font-family: 'Aclonica';
     font-size: 40px; 
     color: rgb(140, 116, 228);
 }
+
+.team-member
+{
+    margin-top: 50px;
+}
+
 .team-member
 {
     margin:0 15px;
@@ -284,7 +281,8 @@ max-width: 25%;
 
 
 h4.team-member-name
-{ color:rgb(22, 7, 241);
+{
+    color:rgb(22, 7, 241);
     font-size: 19px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -293,7 +291,7 @@ h4.team-member-name
 
 h4.team-member-designation
 {
-     color:green;
+    color:green;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -303,39 +301,12 @@ h4.team-member-designation
     
 }
 
-.social-list
-{
-    padding-left: 0;
-}
 
-.social-list li
-{
- list-style: none;
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    margin-right: 6px;
-    margin-top: 10px;
-}
-
-.social-list i
-{
-    font-size: 17px;
-}
-
-.icon-gray i
-{
-    color: #64707b;    
-    
-}
-  
-/*=======================================
-           Team
-=========================================*/
 
 /*=======================================
            Learn
 =========================================*/
+
 .video{
     width: 100%;
     height :900px;
@@ -434,48 +405,8 @@ h4.team-member-designation
   }
  
 
-.blueprint-rocket{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    /*height: auto;*/
-}
 
-.tooltip{
-
-    padding:5px !important;
-    font-size:15px !important;
+ 
 
 
-}
-.tooltip-inner {
-    width:350px;
-    padding:8px 3px !important;
-    color:#FFF !important;
-     -webkit-border-radius:25px !important;
-    -moz-border-radius:25px !important;
-    border-radius:25px !important;
-}
 
-
-.tooltip-arrow{
-    position:absolute !important;
-    width:0 !important;
-    height:0 !important;
-}
-
-.blueprint{
-    /*position: relative;*/
-    /* center the div */
-    right: 0;
-    left: 0;
-    margin-right: auto;
-    margin-left: auto;
-    /* give it dimensions */
-    min-height: 10em;
-    width: 50%;
-    /* just for example presentation */
-    top: 5em;
-    background-color: blue;
-}
