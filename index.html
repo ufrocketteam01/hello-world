@@ -457,7 +457,7 @@
                    
                     <!-- payload weight: <input type="text" style="width:70px;height: 20px;"id = "payloadWeight" size = "3" required>
                     payload location: <input type="text" style="width:70px;height: 20px;" id = "payloadLocation" size = "3" required> <button onclick="testing_gianne();">Simulate</button> -->
-                    <input type="button" id="simulate-button" onclick="javascript: testing();" value="Simulate" style=" background-color: skyblue; border-radius:25px !important;">
+                    <input type="button" id="simulate-button" onclick="javascript: simulate();" value="Simulate" style=" background-color: skyblue; border-radius:25px !important;">
                     <input type="button" id="retry-button" onclick="javascript: retry();" value="Start over" style=" background-color: skyblue; border-radius:25px !important; display: none">
                     <div class="alert alert-danger" id="no-input" style="display: none">
                       <strong>Error!</strong> Please input values
@@ -466,7 +466,10 @@
                       <strong>Error!</strong> Invalid inputs
                     </div>
                 </form>
-                <p id ="output_text">
+                 <h3 id ="output_text"style="color: #FFC857; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"></h3>
+                 <h3 id ="time"style="color: #FFC857; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"></h3>
+
+
         
              </div>
         

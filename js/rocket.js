@@ -3,7 +3,7 @@
 //import regression from 'regression'
 var ode45 = require('ode45-cash-karp')
 var linear = require('everpolate').linear
-var eq;
+var eq, valid;
 
  // Original JavaScript code by Chirp Internet: www.chirp.com.au
   // Please acknowledge use of this code by including this header.
@@ -57,9 +57,10 @@ function getDesignSpan(){
  }
 
 
-window.testing = function(){
+window.simulate = function(){
     var hmax = rocket_cost();
-    // var outputText = document.getElementById('output_text').innerHTML = "IT WORKS " + hmax;
+    if(valid)
+      var outputText = document.getElementById('output_text').innerHTML = "Maximum height: " + Math.trunc(hmax) + " ft";
  }
 
 
@@ -265,13 +266,24 @@ function rocket_cost(){
     foo.push([7,882]);
     foo.push([16,0]);
 
-    eq = regression.polynomial(data, { order: 2 },{ precision: 18 });
+    eq = regression.polynomial(data, { order: 2 });
+    console.log(eq.string);
+    if(eq.string == "y = 0x^2 + 0x + 0"){
+      document.getElementById("error-input").style.display = "block";
+      valid=false;
+    }
+    else{
+      document.getElementById("error-input").style.display = "none";
+      valid=true;
+    }
     // const equation = regression.polynomial([[0, 1], [32, 67], [12, 79]]);
     
      
-   // draw(h, t);
-    step();
-    return hmax;
+    // draw(h, t);
+    if(valid){
+      step();
+      return hmax;
+    }
 
 }
 
@@ -342,7 +354,7 @@ function draw(t,yArr){
  
 
   var step  = function(timestamp){
-    var progress, x, y, y2, t, valid;
+    var progress, x, y, y2, t;
 
     if(start == null) {
       start = timestamp;
@@ -367,12 +379,14 @@ function draw(t,yArr){
     if(valid){
     progress = (timestamp - start) / duration / 1000; // percent
 
+
     t = (timestamp - start)/1000;
+    var time = document.getElementById('time').innerHTML = "Time: " + Math.trunc(t) + " s";
 
     x = (progress * maxX/gridSize)+1; // x = ƒ(t)
 
     y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t)*(1/500); // y = ƒ(x)
-    console.log(y);
+     // y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t);
 
 
     ball.style.left =  Math.min(maxX, gridSize * x) + "px";
@@ -395,7 +409,7 @@ function draw(t,yArr){
 window.retry  = function(){
   var x = document.getElementById("retry-button");
   var y = document.getElementById("simulate-button");
-  document.getElementById("input_form").reset();
+  // document.getElementById("input_form").reset();
 
   x.style.display = "none";
   y.style.display = "inline";
