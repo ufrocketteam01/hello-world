@@ -447,7 +447,7 @@
           <section class="sim" id="siml">
             <div class="container">
                 <h2 style="color: lightseagreen; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><b>Let's Design a Rocket Flight!</b></h2>
-                <form name = "input_form">
+                <form name = "input_form" id="input_form">
                     wind: <input type="text" id = "wind" style="width:70px;height: 20px; "size = "3" required>
                     rocket diameter: <input type="text" style="width:70px;height: 20px;"id = "rocketDiameter" size = "3" required>
                     rocket length: <input type="text" style="width:70px;height: 20px;"id = "rocketLength" size = "3"required>
@@ -457,8 +457,14 @@
                    
                     <!-- payload weight: <input type="text" style="width:70px;height: 20px;"id = "payloadWeight" size = "3" required>
                     payload location: <input type="text" style="width:70px;height: 20px;" id = "payloadLocation" size = "3" required> <button onclick="testing_gianne();">Simulate</button> -->
-                    <input type="button" onclick="javascript: testing();" value="Simulate" style=" background-color: skyblue; border-radius:25px !important;">
-                   <!-- <script type="text/javascript" src="js/rocket.js" ></script> -->
+                    <input type="button" id="simulate-button" onclick="javascript: testing();" value="Simulate" style=" background-color: skyblue; border-radius:25px !important;">
+                    <input type="button" id="retry-button" onclick="javascript: retry();" value="Start over" style=" background-color: skyblue; border-radius:25px !important; display: none">
+                    <div class="alert alert-danger" id="no-input" style="display: none">
+                      <strong>Error!</strong> Please input values
+                    </div>
+                    <div class="alert alert-danger" id="error-input" style="display: none">
+                      <strong>Error!</strong> Invalid inputs
+                    </div>
                 </form>
                 <p id ="output_text">
         

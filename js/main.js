@@ -67,3 +67,9 @@ $('html').popover({
                 $(".popover").remove();                    
             });
 
+
+
+
+
+
+

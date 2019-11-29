@@ -27,33 +27,33 @@ var eq;
 
 function getDesignSpan(){
     var designSpan = Number(document.getElementById('finSpan').value);
-    // return designSpan;
-    return 0.02;
+    return designSpan;
+    // return 0.02;
  }
  function getDesignChord(){
     var designChord = Number(document.getElementById('finChord').value);
-    // return designChord;
-    return 0.2;
+    return designChord;
+    // return 0.2;
  }
  function getDesignLocation(){
     var designLocation = Number(document.getElementById('finLocation').value);
-    // return designLocation;
-    return 9.92;
+    return designLocation;
+    // return 9.92;
  }
  function getWind(){
     var wind = Number(document.getElementById('wind').value);
-    // return wind;
-    return 200;
+    return wind;
+    // return 200;
  }
  function getDesignFuselage(){
     var designFuselage = Number(document.getElementById('rocketLength').value);
-    // return designFuselage;
-    return 8.18;
+    return designFuselage;
+    // return 8.18;
  }
    function getRocketDiameter(){
     var rocketDiameter = Number(document.getElementById('rocketDiameter').value);
-    // return rocketDiameter;
-    return 0.038;
+    return rocketDiameter;
+    // return 0.038;
  }
 
 
@@ -342,31 +342,70 @@ function draw(t,yArr){
  
 
   var step  = function(timestamp){
-    var progress, x, y, y2, t;
+    var progress, x, y, y2, t, valid;
 
     if(start == null) {
       start = timestamp;
     }
 
+    $('input').each(function() {
+        if(!$(this).val()){
+            $("#no-input").css("display", "block");
+            $("retry-button").css("display", "none");
+            $("simulate-button").css("display", "inline");
+            valid = false;
+           return false;
+        }
+        else{
+            $("#no-input").css("display", "none");
+            $("retry-button").css("display", "inline");
+            $("simulate-button").css("display", "none");
+            valid = true;
+        }
+    });
+
+    if(valid){
     progress = (timestamp - start) / duration / 1000; // percent
+
     t = (timestamp - start)/1000;
 
     x = (progress * maxX/gridSize)+1; // x = ƒ(t)
 
     y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t)*(1/500); // y = ƒ(x)
+    console.log(y);
 
 
     ball.style.left =  Math.min(maxX, gridSize * x) + "px";
     ball.style.bottom = (gridSize * y) + "px";
-
-
+    
 
     if(progress >= 1 || y<0) {
       doneAnimating = true;
+      var x = document.getElementById("retry-button");
+      var y = document.getElementById("simulate-button");
+      x.style.display = "inline";
+      y.style.display = "none";
     }
+
     if(!doneAnimating)
       requestAnimationFrame(step);
   }
+}
+
+window.retry  = function(){
+  var x = document.getElementById("retry-button");
+  var y = document.getElementById("simulate-button");
+  document.getElementById("input_form").reset();
+
+  x.style.display = "none";
+  y.style.display = "inline";
+  ball.style.left =  Math.min(maxX, gridSize) + "px";
+  ball.style.bottom = 0 + "px";
+
+  doneAnimating = false;
+  start = null;
+
+}
 
 
 
