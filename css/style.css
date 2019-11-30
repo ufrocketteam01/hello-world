@@ -411,7 +411,7 @@ h4.team-member-designation
    
    
   }
-  #ball, #ball2, #ball3 {
+  #ball, #ball1{
 
     position: absolute;
     left: 140px;
@@ -420,7 +420,10 @@ h4.team-member-designation
     height: 1em;
     border-radius: 0.5em;
   }
- 
+ #parachute{
+   position: absolute;
+    visibility: hidden;
+  }
 
 
  

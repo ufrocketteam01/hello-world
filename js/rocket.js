@@ -3,7 +3,7 @@
 //import regression from 'regression'
 var ode45 = require('ode45-cash-karp')
 var linear = require('everpolate').linear
-var eq, valid;
+var eq, valid, hmax, peaked = false;
 
  // Original JavaScript code by Chirp Internet: www.chirp.com.au
   // Please acknowledge use of this code by including this header.
@@ -58,7 +58,7 @@ function getDesignSpan(){
 
 
 window.simulate = function(){
-    var hmax = rocket_cost();
+    hmax = rocket_cost();
     if(valid)
       var outputText = document.getElementById('output_text').innerHTML = "Maximum height: " + Math.trunc(hmax) + " ft";
  }
@@ -256,7 +256,6 @@ function rocket_cost(){
           counter = 0;
         }
     }
-     // console.log(temp);
 
     while(temp.length>0){
         data.push(temp.splice(0,2));
@@ -267,7 +266,7 @@ function rocket_cost(){
     foo.push([16,0]);
 
     eq = regression.polynomial(data, { order: 2 });
-    console.log(eq.string);
+
     if(eq.string == "y = 0x^2 + 0x + 0"){
       document.getElementById("error-input").style.display = "block";
       valid=false;
@@ -386,12 +385,26 @@ function draw(t,yArr){
     x = (progress * maxX/gridSize)+1; // x = ƒ(t)
 
     y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t)*(1/500); // y = ƒ(x)
-     // y = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t);
+    yy = ((eq.equation[0])*(Math.pow(t,2))+eq.equation[1]*t);
 
+    var parachute = document.getElementById("parachute");
+    parachute.style.left =  Math.min(maxX, gridSize * x) -170+ "px";
+    parachute.style.bottom = (gridSize * y)+4 + "px";
 
     ball.style.left =  Math.min(maxX, gridSize * x) + "px";
     ball.style.bottom = (gridSize * y) + "px";
-    
+
+    if(!peaked)
+      degree = (yy/hmax)*10;
+    else
+      degree = (yy/hmax)+10*10;
+    console.log(degree);
+
+    ball.style.transform = "rotate("+degree+"deg)";
+    if(yy>=hmax){
+      peaked = true;
+      parachute.style.visibility = "visible";
+    }
 
     if(progress >= 1 || y<0) {
       doneAnimating = true;
@@ -415,9 +428,16 @@ window.retry  = function(){
   y.style.display = "inline";
   ball.style.left =  Math.min(maxX, gridSize) + "px";
   ball.style.bottom = 0 + "px";
+  ball.style.transform = "rotate("+0+"deg)";
+
+  parachute.style.left =  Math.min(maxX, gridSize)-130 + "px";
+  parachute.style.bottom = 0 + "px";
+  parachute.style.visibility = "hidden";
+
 
   doneAnimating = false;
   start = null;
+  peaked = false;
 
 }
 
