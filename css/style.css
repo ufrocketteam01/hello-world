@@ -367,8 +367,8 @@ h4.team-member-designation
 
     /*padding:5px !important;*/
     font-size:15px !important;
-    border-color: #000 !important;
-    background-color:rgba(0,0,0,0.7) !important;
+    border-color: lightgray !important;
+    background-color:rgba(255,255,255,0.8) !important;
      /*-webkit-border-radius:25px !important;*/
     /*-moz-border-radius:25px !important;*/
     border-radius:25px !important;
@@ -391,13 +391,13 @@ h4.team-member-designation
     position:absolute !important;
     width:0 !important;
     height:0 !important;
-    background-color: #000 !important;
+    background-color: #white !important;
 }
 .popover.top .arrow:after {
-  border-top-color:rgba(0,0,0,0.7) !important;
+  border-top-color:rgba(255,255,255,0.7) !important;
 }
 .popover-content{
-    color: #fff !important;
+    color: black !important;
 }
 
 .blueprint{
